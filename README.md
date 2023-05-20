@@ -11,15 +11,16 @@ The application is still at an early stage;
 At the current stage, we have successfully created a Django project implemented user registration and authentication. Users can sign up, log in, and navigate to the home page. 
 All passwords are securely hashed for storage, ensuring user privacy and security.
 
+## Setup : coming soon
 
-##Features
+## Features
 User Registration: Users can sign up by providing their email and creating a password.
 User Authentication: Users can log in using their email and password.
 
-##Testing
+## Testing
 You can test the application by creating a new user, logging in, and navigating to the home page. More comprehensive tests will be added as more features are implemented.
 
-##Contribute
+## Contribute
 We welcome contributions! Feel free to submit a Pull Request or open an Issue.
 
 ##Authors
