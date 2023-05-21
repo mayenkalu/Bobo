@@ -47,6 +47,14 @@ def logout_view(request):
 
 @login_required
 def delete_account_view(request):
-    user = request.user
-    user.delete()
-    return redirect('signup')
+    return redirect('delete_account_confirm')
+
+@login_required
+def delete_account_confirm_view(request):
+    if request.method == "POST":
+        # If the form has been submitted, delete the user and redirect them to the login page
+        request.user.delete()
+        return redirect('login')
+
+    # If no form has been submitted, just render the page
+    return render(request, 'accounts/delete_account_confirm.html')
