@@ -4,6 +4,7 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
 
 @login_required
 def home_view(request):
@@ -39,3 +40,13 @@ def login_view(request):
             messages.error(request,"Invalid username or password.")
     form = AuthenticationForm()
     return render(request = request, template_name = "accounts/login.html", context={"form":form})
+
+def logout_view(request):
+    logout(request)
+    return redirect('login')
+
+@login_required
+def delete_account_view(request):
+    user = request.user
+    user.delete()
+    return redirect('signup')
