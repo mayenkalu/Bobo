@@ -1,8 +1,6 @@
-// src/components/App.js
-
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Home from './accounts/Home';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './Home';
 import Login from './accounts/Login';
 import Signup from './accounts/Signup';
 import DeleteAccount from './accounts/DeleteAccount';
@@ -10,12 +8,12 @@ import DeleteAccount from './accounts/DeleteAccount';
 const App = () => {
     return (
         <Router>
-            <Switch>
-                <Route exact path="/" component={Home} />
-                <Route path="/login" component={Login} />
-                <Route path="/signup" component={Signup} />
-                <Route path="/delete-account" component={DeleteAccount} />
-            </Switch>
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<Signup />} />
+                <Route path="/delete-account" element={<DeleteAccount />} />
+            </Routes>
         </Router>
     );
 }

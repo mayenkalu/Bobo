@@ -1,12 +1,26 @@
 import React, { useState } from 'react';
+import apiService from '../../services/apiService';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
+    const navigate = useNavigate();
+
     const handleLogin = async (e) => {
         e.preventDefault();
-        // handle login
+        const data = {
+            username: username,
+            password: password
+        }
+        const response = await apiService.login(data);
+        if (response && response.token) {
+            localStorage.setItem('token', response.token);
+            navigate('/');
+        } else {
+            alert('Error logging in');
+        }
     };
 
     return (
@@ -22,3 +36,4 @@ const Login = () => {
 }
 
 export default Login;
+
