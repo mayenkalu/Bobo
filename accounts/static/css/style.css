@@ -1,0 +1,29 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.form-container {
+    width: 50%;
+    color: rgb(204, 17, 17);
+    background: rgb(0, 247, 255);
+}
+
+.intro-container {
+    width: 50%;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+input[type="submit"] {
+    cursor: pointer;
+}

@@ -20,6 +20,8 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from accounts.api import UserViewSet
+from django.conf import settings
+from django.conf.urls.static import static
 
 router = DefaultRouter()
 router.register(r'users', UserViewSet)
@@ -29,4 +31,4 @@ urlpatterns = [
     path('api/', include(router.urls)),
     path('accounts/', include('accounts.urls')),  # Keep your existing URLs
     # ...other urls
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
