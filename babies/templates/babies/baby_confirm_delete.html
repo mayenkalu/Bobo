@@ -1,0 +1,10 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <h2>Are you sure you want to delete {{ baby.name }}'s profile?</h2>
+  <form method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Yes, delete it.">
+  </form>
+  <a href="{% url 'babies:baby_detail' baby.id %}">No, take me back.</a>
+{% endblock %}

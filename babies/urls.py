@@ -9,4 +9,6 @@ urlpatterns = [
     path('<int:id>/', views.baby_detail_view, name='baby_detail'),
     path('<int:id>/update/', views.baby_update_view, name='baby_update'),
     path('welcome/<int:id>/', views.welcome_page, name='welcome_page'),
+    path('journey/', views.babies_journey_view, name='babies_journey'),
+    path('<int:id>/delete/', views.baby_delete_view, name='baby_delete'),
 ]

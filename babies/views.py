@@ -37,3 +37,17 @@ def baby_update_view(request, id):
     else:
         form = BabyForm(instance=baby)
     return render(request, 'babies/baby_form.html', {'form': form})
+
+@login_required
+def babies_journey_view(request):
+    babies = Baby.objects.filter(user=request.user)
+    return render(request, 'babies/babies_journey.html', {'babies': babies})
+
+@login_required
+def baby_delete_view(request, id):
+    baby = get_object_or_404(Baby, id=id)
+    if request.method == "POST":
+        baby.delete()
+        return redirect('babies:babies_journey')
+    else:
+        return render(request, 'babies/baby_confirm_delete.html', {'baby': baby})

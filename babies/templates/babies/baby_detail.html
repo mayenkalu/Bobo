@@ -6,8 +6,8 @@
 {% endif %}
 <p>Gender: {{ baby.gender }}</p>
 <p>Date of birth: {{ baby.date_of_birth }}</p>
-<p>Weight: {{ baby.weight }}</p>
-<p>Height: {{ baby.height }}</p>
+<p>Weight: {{ baby.weight }} kg</p>
+<p>Height: {{ baby.height }} cm</p>
 <p>Age in months: {{ baby.age_in_months }}</p>
 <a href="{% url 'babies:baby_update' baby.id %}">Update</a>
 <a href="{% url 'babies:welcome_page' baby.id %}">Home</a>
