@@ -29,6 +29,7 @@ router.register(r'users', UserViewSet)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
-    path('accounts/', include('accounts.urls')),  # Keep your existing URLs
+    path('accounts/', include('accounts.urls')),
+    path('babies/', include('babies.urls')),# Keep your existing URLs
     # ...other urls
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -1,0 +1,8 @@
+<h1>{{ baby.name }}</h1>
+<img src="{{ baby.picture.url }}" alt="{{ baby.name }}">
+<p>Gender: {{ baby.gender }}</p>
+<p>Date of birth: {{ baby.date_of_birth }}</p>
+<p>Weight: {{ baby.weight }}</p>
+<p>Height: {{ baby.height }}</p>
+<p>Age in months: {{ baby.age_in_months }}</p>
+<a href="{% url 'babies:update' baby.id %}">Update</a>
