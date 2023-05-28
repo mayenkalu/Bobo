@@ -3,7 +3,8 @@
 {% block content %}
   <h2>Welcome {{ baby.parent_name }}!</h2>
   <p>You have successfully created a profile for {{ baby.name }}.</p>
-  <a href="{% url 'babies:detail' baby.id %}">View {{ baby.name }}'s Profile</a> 
+  <p>Click on the links below to view your profile, add a new baby, or logout.</p>
+  <a href="{% url 'babies:baby_detail' baby.id %}">View {{ baby.name }}'s Profile</a>
   <a href="{% url 'logout' %}">Logout</a>
   <a href="{% url 'delete_account' %}">Delete Account</a>
 {% endblock %}

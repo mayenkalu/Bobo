@@ -1,6 +1,3 @@
-from django.shortcuts import render
-
-# Create your views here.
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import BabyForm
 from .models import Baby
@@ -14,8 +11,7 @@ def baby_create_view(request):
             baby = form.save(commit=False)
             baby.user = request.user
             baby.save()
-            return redirect('welcome_page', baby.id)
-            #return redirect('babies:detail', baby.id)
+            return redirect('babies:welcome_page', baby.id)
     else:
         form = BabyForm()
     return render(request, 'babies/baby_form.html', {'form': form})
@@ -24,7 +20,6 @@ def baby_create_view(request):
 def welcome_page(request, id):
     baby = get_object_or_404(Baby, id=id)
     return render(request, 'babies/welcome_page.html', {'baby': baby})
-
 
 @login_required
 def baby_detail_view(request, id):
@@ -38,7 +33,7 @@ def baby_update_view(request, id):
         form = BabyForm(request.POST, request.FILES, instance=baby)
         if form.is_valid():
             form.save()
-            return redirect('babies:detail', baby.id)
+            return redirect('babies:baby_detail', baby.id)
     else:
         form = BabyForm(instance=baby)
     return render(request, 'babies/baby_form.html', {'form': form})

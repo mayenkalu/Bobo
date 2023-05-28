@@ -6,7 +6,7 @@ class BabyForm(forms.ModelForm):
         model = Baby
         widgets = {
           'date_of_birth': forms.DateInput(attrs={'type': 'date'}),
-          'weight': forms.TextInput(attrs={'placeholder': 'Kilograms'}),
-          'height': forms.TextInput(attrs={'placeholder': 'Centimeters'}),
+          'weight': forms.NumberInput(attrs={'placeholder': 'Kilograms'}),
+          'height': forms.NumberInput(attrs={'placeholder': 'Centimeters'}),
         }
         fields = ['name', 'gender', 'picture', 'date_of_birth', 'weight', 'height', 'parent_name', 'parent_relationship']
