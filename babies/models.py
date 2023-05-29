@@ -27,3 +27,6 @@ class Baby(models.Model):
         from datetime import date
         rdelta = relativedelta(date.today(), self.date_of_birth)
         return rdelta.years * 12 + rdelta.months
+
+    def __str__(self):
+        return self.name
