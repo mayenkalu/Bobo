@@ -9,5 +9,10 @@
 <p>Weight: {{ baby.weight }} kg</p>
 <p>Height: {{ baby.height }} cm</p>
 <p>Age in months: {{ baby.age_in_months }}</p>
+<a href="{% url 'milestones:log_milestone' baby.id %}">Log Milestone</a>
+<a href="{% url 'milestones:view_expected_milestones' baby.id %}">View Expected Milestones</a>
+<a href="{% url 'milestones:view_activities' baby.id %}">View Activities</a>
+<a href="{% url 'milestones:view_nutrition_guide' baby.id %}">View Nutrition Guide</a>
 <a href="{% url 'babies:baby_update' baby.id %}">Update</a>
 <a href="{% url 'babies:welcome_page' baby.id %}">Home</a>
+<p>Progress: {{ baby.progress.report }}</p>
