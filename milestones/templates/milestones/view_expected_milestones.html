@@ -1,0 +1,8 @@
+{% extends 'base_milestones.html' %}
+<h1>Expected Milestones for Month {{ baby.age_in_months }}</h1>
+<ul>
+    {% for milestone in expected_milestones %}
+    <li>{{ milestone.description }}</li>
+    {% endfor %}
+</ul>
+<a href="{% url 'baby_profile' baby.id %}">Back to Baby Profile</a>

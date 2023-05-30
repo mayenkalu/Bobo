@@ -1,0 +1,13 @@
+{% extends 'base_milestones.html' %}
+
+{% block content %}
+  <h2>Activities for {{ baby.name }} ({{ baby.age_in_months }} months)</h2>
+  <ul>
+  {% for activity in activities %}
+    <li>{{ activity.description }}</li>
+  {% empty %}
+    <li>No activities available for this month.</li>
+  {% endfor %}
+  </ul>
+  <a href="{% url 'babies:baby_detail' baby.id %}">Back to baby profile</a>
+{% endblock %}
