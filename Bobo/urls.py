@@ -32,6 +32,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
     path('accounts/', include('accounts.urls')),
-    path('babies/', include('babies.urls')),# Keep your existing URLs
+    path('babies/', include('babies.urls')),
+    path('milestones/', include('milestones.urls')),# Keep your existing URLs
     # ...other urls
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
