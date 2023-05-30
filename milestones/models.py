@@ -1,11 +1,19 @@
 from django.db import models
 from django.utils import timezone
 from django.db import models
-from babies.models import Baby  # import BabyProfile model
+from babies.models import Baby
+from ..babies.utils import generate_progress_report
+# import BabyProfile model
 
 class Milestone(models.Model):
     month = models.IntegerField()
     description = models.TextField()
+    
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        if self.logged:
+            for baby in Baby.objects.filter(logged_milestones__id=self.id):
+                baby.update_progress()
 
 class Activity(models.Model):
     month = models.IntegerField()
