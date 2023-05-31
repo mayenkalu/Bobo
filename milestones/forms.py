@@ -1,7 +1,7 @@
 from django import forms
-from babies.models import BabyProfile
+from babies.models import Baby
 
 class MilestoneLogForm(forms.ModelForm):
     class Meta:
-        model = BabyProfile
+        model = Baby
         fields = ['logged_milestones']

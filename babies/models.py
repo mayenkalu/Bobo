@@ -18,7 +18,6 @@ class Baby(models.Model):
     date_of_birth = models.DateField(null=False)
     weight = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
     height = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
-    age_in_months = models.IntegerField(null=False)
     parent_name = models.CharField(max_length=200, null=True)
     parent_relationship = models.CharField(max_length=200, null=False)
     logged_milestones = models.ManyToManyField('milestones.Milestone', blank=True)
@@ -35,9 +34,6 @@ class Baby(models.Model):
         logged_milestones = self.logged_milestones.all()
         progress.report = generate_progress_report(logged_milestones, self.age_in_months)
         progress.save()
-
-    def __str__(self):
-        return self.name
 
     def __str__(self):
         return self.name

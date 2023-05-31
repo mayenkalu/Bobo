@@ -2,7 +2,6 @@ from django.db import models
 from django.utils import timezone
 from django.db import models
 from babies.models import Baby
-from ..babies.utils import generate_progress_report
 # import BabyProfile model
 
 class Milestone(models.Model):
