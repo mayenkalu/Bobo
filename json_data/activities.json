@@ -1,0 +1,42 @@
+[
+    {
+        "model": "milestones.activity",
+        "pk": 1,
+        "fields": {
+            "month": 1,
+            "activity": "Tummy time for head and neck strength"
+        }
+    },
+    {
+        "model": "milestones.activity",
+        "pk": 2,
+        "fields": {
+            "month": 2,
+            "activity": "Hanging toys for hand-eye coordination"
+        }
+    },
+    {
+        "model": "milestones.activity",
+        "pk": 3,
+        "fields": {
+            "month": 3,
+            "activity": "Peekaboo for emotional connection"
+        }
+    },
+    {
+        "model": "milestones.activity",
+        "pk": 4,
+        "fields": {
+            "month": 4,
+            "activity": "Mirror play for self-recognition"
+        }
+    },
+    {
+        "model": "milestones.activity",
+        "pk": 5,
+        "fields": {
+            "month": 5,
+            "activity": "Soft blocks for fine motor skills"
+        }
+    }
+]

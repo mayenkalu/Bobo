@@ -20,7 +20,8 @@ class Baby(models.Model):
     height = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
     parent_name = models.CharField(max_length=200, null=True)
     parent_relationship = models.CharField(max_length=200, null=False)
-    logged_milestones = models.ManyToManyField('milestones.Milestone', blank=True)
+    logged_milestones = models.ManyToManyField('milestones.Milestone', blank=True, related_name='babies')
+
 
     @property
     def age_in_months(self):

@@ -1,10 +1,9 @@
-{% extends 'base_milestones.html' %}
 
 {% block content %}
   <h2>Nutrition Guide for {{ baby.name }} ({{ baby.age_in_months }} months)</h2>
   <ul>
   {% for guide in nutrition_guide %}
-    <li>{{ guide.description }}</li>
+    <li>{{ guide.guide }}</li>
   {% empty %}
     <li>No nutrition guide available for this month.</li>
   {% endfor %}

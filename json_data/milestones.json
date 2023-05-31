@@ -1,0 +1,42 @@
+[
+    {
+        "model": "milestones.milestone",
+        "pk": 1,
+        "fields": {
+            "month": 1,
+            "description": "Raises head and chest when lying on stomach"
+        }
+    },
+    {
+        "model": "milestones.milestone",
+        "pk": 2,
+        "fields": {
+            "month": 2,
+            "description": "Can hold head up and begins to push up when lying on tummy"
+        }
+    },
+    {
+        "model": "milestones.milestone",
+        "pk": 3,
+        "fields": {
+            "month": 3,
+            "description": "Recognizes familiar faces and begins to smile at people"
+        }
+    },
+    {
+        "model": "milestones.milestone",
+        "pk": 4,
+        "fields": {
+            "month": 4,
+            "description": "Can hold head steady unsupported"
+        }
+    },
+    {
+        "model": "milestones.milestone",
+        "pk": 5,
+        "fields": {
+            "month": 5,
+            "description": "Begins to sit without support"
+        }
+    }
+]

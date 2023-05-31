@@ -1,0 +1,42 @@
+[
+    {
+        "model": "milestones.nutritionguide",
+        "pk": 1,
+        "fields": {
+            "month": 1,
+            "guide": "Breast milk or formula"
+        }
+    },
+    {
+        "model": "milestones.nutritionguide",
+        "pk": 2,
+        "fields": {
+            "month": 2,
+            "guide": "Continued breast milk or formula"
+        }
+    },
+    {
+        "model": "milestones.nutritionguide",
+        "pk": 3,
+        "fields": {
+            "month": 3,
+            "guide": "Continued breast milk or formula"
+        }
+    },
+    {
+        "model": "milestones.nutritionguide",
+        "pk": 4,
+        "fields": {
+            "month": 4,
+            "guide": "Introduction to pureed food"
+        }
+    },
+    {
+        "model": "milestones.nutritionguide",
+        "pk": 5,
+        "fields": {
+            "month": 5,
+            "guide": "Pureed food and some breastfeeding or formula"
+        }
+    }
+]
