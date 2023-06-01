@@ -8,6 +8,9 @@ class Milestone(models.Model):
     month = models.IntegerField()
     description = models.TextField()
     logged_by_babies = models.ManyToManyField(Baby, blank=True, related_name='milestones')
+    
+    def __str__(self):
+        return self.description
 
 
     def save(self, *args, **kwargs):
