@@ -2,12 +2,13 @@ from django.db import models
 from django.utils import timezone
 from django.db import models
 from babies.models import Baby
-# import BabyProfile model
+from django.apps import apps
+from .utils import generate_progress_report
 
 class Milestone(models.Model):
     month = models.IntegerField()
     description = models.TextField()
-    logged_by_babies = models.ManyToManyField(Baby, blank=True, related_name='milestones')
+    logged_by_babies = models.ManyToManyField('babies.Baby', blank=True, related_name='milestones')
     
     def __str__(self):
         return self.description
@@ -30,8 +31,15 @@ class NutritionGuide(models.Model):
     guide = models.TextField()
 
 class Progress(models.Model):
-    baby = models.OneToOneField(Baby, on_delete=models.CASCADE)
+    baby = models.ForeignKey('babies.Baby', on_delete=models.CASCADE, related_name='progresses')
     report = models.TextField()
 
     def __str__(self):
         return f'Progress for {self.baby.name} at {timezone.now()}'
+    
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        Baby = apps.get_model('babies', 'Baby')  # get Baby model
+        baby = Baby.objects.get(id=self.baby_id)
+        baby.progress_report = generate_progress_report(baby.logged_milestones.all(), baby.age_in_months)
+        baby.save()

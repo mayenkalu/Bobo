@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .forms import BabyForm
 from .models import Baby
 from django.contrib.auth.decorators import login_required
+from milestones.models import Progress
 
 @login_required
 def baby_create_view(request):
@@ -11,10 +12,15 @@ def baby_create_view(request):
             baby = form.save(commit=False)
             baby.user = request.user
             baby.save()
+
+            # create Progress instance for this baby if it doesn't exist
+            Progress.objects.get_or_create(baby=baby)
+
             return redirect('babies:welcome_page', baby.id)
     else:
         form = BabyForm()
     return render(request, 'babies/baby_form.html', {'form': form})
+
 
 @login_required
 def welcome_page(request, id):
@@ -23,8 +29,10 @@ def welcome_page(request, id):
 
 @login_required
 def baby_detail_view(request, id):
-    baby = get_object_or_404(Baby, id=id)
-    return render(request, 'babies/baby_detail.html', {'baby': baby})
+    baby = Baby.objects.get(id=id)
+    progress, created = Progress.objects.get_or_create(baby=baby)
+    return render(request, 'babies/baby_detail.html', {'baby': baby, 'progress': progress})
+
 
 @login_required
 def baby_update_view(request, id):

@@ -3,7 +3,9 @@ from django.contrib.auth.models import User
 from django.conf import settings
 from datetime import date
 from dateutil.relativedelta import relativedelta
-from .utils import generate_progress_report
+from milestones.utils import generate_progress_report
+from django.apps import apps
+#from milestones.models import Progress
 
 
 # Create your models here
@@ -21,6 +23,8 @@ class Baby(models.Model):
     parent_name = models.CharField(max_length=200, null=True)
     parent_relationship = models.CharField(max_length=200, null=False)
     logged_milestones = models.ManyToManyField('milestones.Milestone', blank=True, related_name='babies')
+    progress = models.ForeignKey('milestones.Progress', on_delete=models.CASCADE, null=True, related_name='babies')
+
 
 
     @property
@@ -31,7 +35,8 @@ class Baby(models.Model):
         return rdelta.years * 12 + rdelta.months
 
     def update_progress(self):
-        progress = self.progress
+        Progress = apps.get_model('milestones', 'Progress')
+        progress, created = Progress.objects.get_or_create(baby=self)
         logged_milestones = self.logged_milestones.all()
         progress.report = generate_progress_report(logged_milestones, self.age_in_months)
         progress.save()
