@@ -1,0 +1,20 @@
+<!-- templates/forum/thread_detail.html -->
+
+{% extends 'base_forum.html' %}
+
+{% block content %}
+  <h2>{{ thread.title }}</h2>
+  <ul>
+    {% for post in thread.posts.all %}
+      <li>
+        <p>{{ post.message }}</p>
+        <p>Posted by {{ post.created_by.username }} on {{ post.created_at }}</p>
+      </li>
+    {% empty %}
+      <li>No posts have been made in this thread yet.</li>
+    {% endfor %}
+  </ul>
+  <a href="{% url 'forum:post_create' thread.id %}">Reply to this thread</a>
+  <br/>
+  <a href="{% url 'forum:thread_list' thread.category.id %}">Go back to see other threads on "{{ thread.category.name }}"</a>
+{% endblock %}

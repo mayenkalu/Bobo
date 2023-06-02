@@ -24,13 +24,6 @@ All passwords are securely hashed for storage, ensuring user privacy and securit
 - **Creation**: Users can create detailed profiles for their babies, including name, gender, date of birth, weight, height, parent's details and pictures.
 - **Update & Deletion**: Users have the flexibility to update or delete the baby profiles.
 
-### Milestones, Activities, and Nutrition Guides: 
-- **Milestones**: Users can log their baby's milestones, which will include the date and the description. The milestones will be displayed on the baby's profile.
-- **Activities**: Users can access activities that are appropriate for their baby's age and milestone expectancy. The activities will be displayed on the baby's profile.
-- **Nutrition Guides**: Users can access nutrition guides that are appropriate for their baby's age. The nutrition guides will be displayed on the baby's profile.
-`Most of milestone logic have beeen integrated with very scanty data, Code adjustment might come soon to handle a largely populated milestone database`
-
-
 ## Setup :
 To set up the project on your local machine, follow the steps below:
 
