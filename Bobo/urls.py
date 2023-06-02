@@ -23,10 +23,15 @@ from django.conf import settings
 from django.conf.urls.static import static
 from accounts.api import UserViewSet
 from babies.api import BabyViewSet
+from forum import api as forum_api
 
 router = DefaultRouter()
 router.register(r'users', UserViewSet)
 router.register(r'babies', BabyViewSet)
+router.register(r'forum/categories', forum_api.CategoryViewSet)
+router.register(r'forum/threads', forum_api.ThreadViewSet)
+router.register(r'forum/posts', forum_api.PostViewSet)
+router.register(r'forum/comments', forum_api.CommentViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
