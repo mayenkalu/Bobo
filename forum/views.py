@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Category, Thread, Post
-from .forms import ThreadForm, PostForm
+from .forms import ThreadForm, PostForm, CommentForm
 from django.contrib.auth.decorators import login_required
 
 @login_required
@@ -47,3 +47,17 @@ def post_create(request, thread_id):
     else:
         form = PostForm()
     return render(request, 'forum/post_form.html', {'form': form})
+
+def comment_create(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.post = post
+            comment.created_by = request.user
+            comment.save()
+            return redirect('forum:thread_detail', thread_id=post.thread.id)
+    else:
+        form = CommentForm()
+    return render(request, 'forum/comment_form.html', {'form': form})
