@@ -1,0 +1,17 @@
+<!-- templates/forum/category_list.html -->
+
+{% extends 'base_forum.html' %}
+
+{% block content %}
+  <h2>Forum Categories</h2>
+  <ul>
+    {% for category in categories %}
+      <li>
+        <a href="{% url 'forum:thread_list' category.id %}">{{ category.name }}</a>
+        <p>{{ category.description }}</p>
+      </li>
+    {% empty %}
+      <li>No categories have been created yet.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

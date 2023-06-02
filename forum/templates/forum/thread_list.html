@@ -1,0 +1,18 @@
+<!-- templates/forum/thread_list.html -->
+
+{% extends 'base_forum.html' %}
+
+{% block content %}
+  <h2>Threads in {{ category.name }}</h2>
+  <ul>
+    {% for thread in category.threads.all %}
+      <li>
+        <a href="{% url 'forum:thread_detail' thread.id %}">{{ thread.title }}</a>
+        <p>Created by {{ thread.created_by.username }} on {{ thread.created_at }}</p>
+      </li>
+    {% empty %}
+      <li>No threads have been created in this category yet.</li>
+    {% endfor %}
+  </ul>
+  <a href="{% url 'forum:thread_create' category.id %}">Create a new thread</a>
+{% endblock %}

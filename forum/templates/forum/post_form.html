@@ -1,0 +1,12 @@
+<!-- templates/forum/post_form.html -->
+
+{% extends 'base_forum.html' %}
+
+{% block content %}
+  <h2>Reply to thread</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Post</button>
+  </form>
+{% endblock %}
