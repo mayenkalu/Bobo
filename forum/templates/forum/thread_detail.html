@@ -9,6 +9,17 @@
       <li>
         <p>{{ post.message }}</p>
         <p>Posted by {{ post.created_by.username }} on {{ post.created_at }}</p>
+        <ul>
+          {% for comment in post.comments.all %}
+            <li>
+              <p>{{ comment.message }}</p>
+              <p>Posted by {{ comment.created_by.username }} on {{ comment.created_at }}</p>
+            </li>
+          {% empty %}
+            <li>No comments have been made on this post yet.</li>
+          {% endfor %}
+        </ul>
+        <a href="{% url 'forum:comment_create' post.id %}">Comment on this post</a>
       </li>
     {% empty %}
       <li>No posts have been made in this thread yet.</li>
