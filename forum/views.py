@@ -1,19 +1,24 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Category, Thread, Post
 from .forms import ThreadForm, PostForm
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def category_list(request):
     categories = Category.objects.all()
     return render(request, 'forum/category_list.html', {'categories': categories})
 
+@login_required
 def thread_list(request, category_id):
     category = get_object_or_404(Category, id=category_id)
     return render(request, 'forum/thread_list.html', {'category': category})
 
+@login_required
 def thread_detail(request, thread_id):
     thread = get_object_or_404(Thread, id=thread_id)
     return render(request, 'forum/thread_detail.html', {'thread': thread})
 
+@login_required
 def thread_create(request, category_id):
     category = get_object_or_404(Category, id=category_id)
     if request.method == "POST":
@@ -28,6 +33,7 @@ def thread_create(request, category_id):
         form = ThreadForm()
     return render(request, 'forum/thread_form.html', {'form': form})
 
+@login_required
 def post_create(request, thread_id):
     thread = get_object_or_404(Thread, id=thread_id)
     if request.method == "POST":
