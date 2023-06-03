@@ -15,12 +15,17 @@
     {% block content %}
   <h1>{{ item.name }}</h1>
   <img src="{{ item.image.url }}" alt="{{ item.name }}">
-  <p>{{ item.description }}</p>
-  <p>{{ item.price }} Naria</p>
-  <a href="{% url 'marketplace:item_update' item.id %}">Edit</a>
-  <a href="{% url 'marketplace:item_delete' item.id %}">Delete</a>
-  
+  <p>Description: {{ item.description }}</p>
+  <p>Price: {{ item.price }} Naria</p>
+  <p>Sellers Contact Info: {{ item.contact}}</p>
+
+  {% if user.is_authenticated and item.user == user %}
+    <a href="{% url 'marketplace:item_update' item.id %}">Edit</a>
+    <a href="{% url 'marketplace:item_delete' item.id %}">Delete</a>
+  {% endif %}
 {% endblock %}
+
+
 
   </main>
 </body>

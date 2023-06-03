@@ -13,6 +13,7 @@ class Category(models.Model):
 class Item(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField()
+    contact = models.CharField(max_length=400)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     image = models.ImageField(upload_to='items/')
     category = models.ForeignKey(Category, on_delete=models.CASCADE)

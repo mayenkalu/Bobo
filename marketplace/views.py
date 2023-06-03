@@ -45,5 +45,8 @@ def item_update(request, item_id):
 @login_required
 def item_delete(request, item_id):
     item = get_object_or_404(Item, id=item_id)
-    item.delete()
-    return redirect('category_list')
+    if request.method == 'POST':
+        item.delete()
+        return redirect('marketplace:category_list')
+    else:
+        return render(request, 'marketplace/item_confirm_delete.html', {'item': item})
