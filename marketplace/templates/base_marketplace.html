@@ -1,0 +1,14 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+<div id="marketplace-navbar">
+    <ul>
+        <li><a href="{% url 'marketplace:category_list' %}">Categories</a></li>
+        <!-- More links specific to marketplace can be added here -->
+    </ul>
+</div>
+
+<div id="marketplace-content">
+    {% block marketplace_content %}{% endblock %}
+</div>
+{% endblock %}
