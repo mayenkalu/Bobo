@@ -1,10 +1,15 @@
 {% extends 'base_marketplace.html' %}
 
 {% block content %}
-  <h1>Items</h1>
+  <h1>Items in {{ category.name }}</h1>
   <ul>
     {% for item in items %}
-      <li><a href="{% url 'marketplace:item_detail' item.id %}">{{ item.name }}</a></li>
+      <li>
+        <a href="{% url 'marketplace:item_detail' item.id %}">
+          <img src="{{ item.image.url }}" alt="{{ item.name }}" style="width:100px;height:100px;">
+          {{ item.name }} - {{ item.price }} Naira
+        </a>
+      </li>
     {% endfor %}
   </ul>
 {% endblock %}

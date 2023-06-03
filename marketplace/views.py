@@ -9,6 +9,7 @@ def category_list(request):
 
 def item_list(request, category_id):
     items = Item.objects.filter(category_id=category_id)
+    category = Category.objects.get(id=category_id)
     return render(request, 'marketplace/item_list.html', {'items': items})
 
 def item_detail(request, item_id):
@@ -23,7 +24,7 @@ def item_create(request):
             new_item = form.save(commit=False)
             new_item.user = request.user
             new_item.save()
-            return redirect('item_detail', item_id=new_item.id)
+            return redirect('marketplace:item_list', category_id=new_item.category.id)
     else:
         form = ItemForm()
     return render(request, 'marketplace/item_form.html', {'form': form})
@@ -35,10 +36,11 @@ def item_update(request, item_id):
         form = ItemForm(request.POST, request.FILES, instance=item)
         if form.is_valid():
             form.save()
-            return redirect('item_detail', item_id=item_id)
+            return redirect('marketplace:item_list', category_id=item.category.id)
     else:
         form = ItemForm(instance=item)
     return render(request, 'marketplace/item_form.html', {'form': form})
+
 
 @login_required
 def item_delete(request, item_id):
