@@ -45,5 +45,6 @@ urlpatterns = [
     path('milestones/', include('milestones.urls')),# Keep your existing URLs
     path('forum/', include('forum.urls')),
     path('marketplace/', include('marketplace.urls')),
+    path('', include('chatbot.urls')),
     # ...other urls
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
