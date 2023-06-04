@@ -35,6 +35,10 @@ All passwords are securely hashed for storage, ensuring user privacy and securit
 - **Threads**: Users can create threads in the forum, which will be displayed in the appropriate category. Threads will include a title and description.
 - **Posts**: Users can create posts in the forum, which will be displayed in the appropriate thread. Posts will include a title and description.
 
+### Marketplace:
+- **Items**: Users can create items to sell in the marketplace. Items will include a title, description, price, image and contact information.
+- **Categories**: Default categories will be provided to create items and view items. These would include general, health, nutrition, and development etc.
+
 ## Setup :
 To set up the project on your local machine, follow the steps below:
 
