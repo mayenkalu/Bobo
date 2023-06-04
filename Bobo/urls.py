@@ -24,6 +24,7 @@ from django.conf.urls.static import static
 from accounts.api import UserViewSet
 from babies.api import BabyViewSet
 from forum import api as forum_api
+from marketplace.api import CategoryViewSet, ItemViewSet 
 
 router = DefaultRouter()
 router.register(r'users', UserViewSet)
@@ -32,6 +33,9 @@ router.register(r'forum/categories', forum_api.CategoryViewSet)
 router.register(r'forum/threads', forum_api.ThreadViewSet)
 router.register(r'forum/posts', forum_api.PostViewSet)
 router.register(r'forum/comments', forum_api.CommentViewSet)
+router.register(r'categories', CategoryViewSet, basename='category')
+router.register(r'items', ItemViewSet, basename='item')
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -40,5 +44,6 @@ urlpatterns = [
     path('babies/', include('babies.urls')),
     path('milestones/', include('milestones.urls')),# Keep your existing URLs
     path('forum/', include('forum.urls')),
+    path('marketplace/', include('marketplace.urls')),
     # ...other urls
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
