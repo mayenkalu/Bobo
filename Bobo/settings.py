@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'babies',
     'milestones',
     'forum',
-    'marketplace'
+    'marketplace',
+    'chatbot',
     
 ]
 

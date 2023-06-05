@@ -1,0 +1,49 @@
+<html>
+<head>
+    <title>Chatbot</title>
+</head>
+<body>
+    <h1>Chatbot</h1>
+    <div id="chat-container">
+        <div id="chat-log"></div>
+        <div id="chat-input">
+            <input type="text" id="message-input" autofocus />
+            <button id="send-button">Send</button>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Handle send button click
+            $('#send-button').click(sendMessage);
+
+            // Handle enter key press in the message input field
+            $('#message-input').keypress(function(e) {
+                if (e.which === 13) {
+                    sendMessage();
+                }
+            });
+        });
+
+        function sendMessage() {
+            var message = $('#message-input').val().trim();
+
+            if (message !== '') {
+                // Display the user's message in the chat log
+                $('#chat-log').append('<p><strong>You:</strong> ' + message + '</p>');
+                // Clear the message input field
+                $('#message-input').val('');
+
+                // Send the user's message to the server
+                $.post('/chatbot/', { message: message }, function(response) {
+                    // Display the chatbot's response in the chat log
+                    $('#chat-log').append('<p><strong>Chatbot:</strong> ' + response.response + '</p>');
+                    // Scroll to the bottom of the chat log
+                    $('#chat-log').scrollTop($('#chat-log')[0].scrollHeight);
+                });
+            }
+        }
+    </script>
+</body>
+</html>
