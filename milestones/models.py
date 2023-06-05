@@ -8,7 +8,7 @@ from .utils import generate_progress_report
 class Milestone(models.Model):
     month = models.IntegerField()
     description = models.TextField()
-    logged_by_babies = models.ManyToManyField('babies.Baby', blank=True, related_name='milestones')
+    area = models.CharField(max_length=100)
     
     def __str__(self):
         return self.description
