@@ -14,12 +14,6 @@ class Milestone(models.Model):
         return self.description
 
 
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
-        if self.logged_by_babies.exists():  # check if there are any logged babies
-            for baby in self.logged_by_babies.all():  # loop through logged babies
-                baby.update_progress()  # call update_progress on each baby
-
 
 
 class Activity(models.Model):

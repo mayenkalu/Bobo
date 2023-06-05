@@ -7,17 +7,29 @@ from django.shortcuts import render, redirect
 from .forms import MilestoneLogForm
 from .models import Milestone, Activity, NutritionGuide
 from babies.models import Baby
+from itertools import groupby
+
 
 def log_milestone(request, baby_id):
     baby = Baby.objects.get(id=baby_id)
+    milestones = Milestone.objects.filter(month=baby.age_in_months)
+
+    # Group the milestones by area
+    grouped_milestones = {}
+    for milestone in milestones:
+        grouped_milestones.setdefault(milestone.area, []).append((milestone.id, milestone.description))
+
     if request.method == 'POST':
-        form = MilestoneLogForm(request.POST, instance=baby, baby=baby)  # Pass the baby to the form
+        form = MilestoneLogForm(request.POST, instance=baby)
         if form.is_valid():
             form.save()
-            return redirect('babies:baby_detail', id=baby.id)  # Note: change baby_id to id
+            return redirect('babies:baby_detail', id=baby.id)
     else:
-        form = MilestoneLogForm(instance=baby, baby=baby)  # Pass the baby to the form
+        form = MilestoneLogForm(instance=baby, baby=baby, grouped_milestones=grouped_milestones)  # Pass the grouped_milestones data to the form
+
     return render(request, 'milestones/log_milestone.html', {'form': form})
+
+
 
 def view_expected_milestones(request, baby_id):
     baby = Baby.objects.get(id=baby_id)
