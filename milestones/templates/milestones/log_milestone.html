@@ -1,14 +1,13 @@
 <form method="post">
     {% csrf_token %}
-    {% for area, milestones in form.grouped_milestones.items %}
+    {% for area, milestones in grouped_milestones.items %}
       <h3>{{ area }}</h3>
       {% for milestone in milestones %}
         <div>
-          <input type="checkbox" id="milestone_{{ milestone.0 }}" name="logged_milestones" value="{{ milestone.0 }}" {% if milestone.0 in form.initial.logged_milestones %} checked {% endif %}>
-          <label for="milestone_{{ milestone.0 }}">{{ milestone.1 }}</label>
+            <input type="checkbox" id="milestone_{{ milestone.0 }}" name="logged_milestones" value="{{ milestone.0 }}" {% if milestone.0 in logged_milestones %} checked {% endif %}>
+            <label for="milestone_{{ milestone.0 }}">{{ milestone.1 }}</label>
         </div>
       {% endfor %}
     {% endfor %}
     <button type="submit">Log Milestones</button>
-  </form>
-  
+</form>

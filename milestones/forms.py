@@ -28,7 +28,14 @@ class MilestoneLogForm(forms.ModelForm):
         baby = self.instance
         logged_milestones = self.cleaned_data['logged_milestones']
         if commit:
+            # Delete LoggedMilestones not in logged_milestones
             LoggedMilestone.objects.filter(baby=baby).exclude(milestone__in=logged_milestones).delete()
+        
             for milestone in logged_milestones:
-                LoggedMilestone.objects.get_or_create(baby=baby, milestone=milestone)
+                LoggedMilestone.objects.update_or_create(baby=baby, milestone=milestone)
+
+            # Update logged_milestones field in Baby model
+            baby.logged_milestones.set(logged_milestones)
+            baby.save()
         return baby
+

@@ -15,7 +15,7 @@ from django.contrib import messages
 def log_milestone(request, baby_id):
     baby = Baby.objects.get(id=baby_id)
     milestones = Milestone.objects.filter(month=baby.age_in_months)
-    logged_milestones = baby.logged_milestones.values_list('id', flat=True)
+    logged_milestones = list(baby.logged_milestones.values_list('id', flat=True))
 
     grouped_milestones = {}
     for milestone in milestones:
@@ -26,11 +26,11 @@ def log_milestone(request, baby_id):
         if form.is_valid():
             form.save()
             messages.success(request, 'Milestones logged successfully.')
-            return redirect('babies:baby_detail', id=baby.id)
+            return redirect('milestones:log_milestone', baby_id=baby.id)
     else:
         form = MilestoneLogForm(instance=baby, baby=baby, grouped_milestones=grouped_milestones, initial={'logged_milestones': logged_milestones})
 
-    return render(request, 'milestones/log_milestone.html', {'form': form, 'grouped_milestones': grouped_milestones})
+    return render(request, 'milestones/log_milestone.html', {'form': form, 'grouped_milestones': grouped_milestones, 'logged_milestones': logged_milestones})
 
 
 
