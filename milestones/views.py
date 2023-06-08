@@ -23,7 +23,7 @@ def log_milestone(request, baby_id):
     else:
         form = MilestoneLogForm(instance=baby, baby=baby, grouped_milestones=grouped_milestones, initial={'logged_milestones': logged_milestones})
 
-    return render(request, 'milestones/log_milestone.html', {'form': form, 'grouped_milestones': grouped_milestones, 'logged_milestones': logged_milestones})
+    return render(request, 'milestones/log_milestone.html', {'form': form, 'grouped_milestones': grouped_milestones, 'logged_milestones': logged_milestones, 'baby': baby})
 
 
 

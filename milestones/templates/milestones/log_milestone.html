@@ -6,16 +6,45 @@
     </ul>
 {% endif %}
 
+<h1>Welcome to {{ baby.name }}'s Milestone Tracker</h1>
+
+<p>Hello, and thank you for using our milestone tracker. Today, {{ baby.name }} is {{ baby.age_in_months }} months old. Below, you'll find a list of developmental milestones that babies often reach around this age. This isn't a checklist, so don't worry if {{ baby.name }} hasn't reached all of them yet. All babies develop at their own pace!</p>
+
+<p>We recommend using this page to track {{ baby.name }}'s growth and development. It can be a fun way to document these special moments and observe how {{ baby.name }} is learning and growing. Plus, this information can be helpful for pediatrician visits. Please select each milestone that {{ baby.name }} has reached, and include the date it was observed.</p>
+
 <form method="post">
     {% csrf_token %}
     {% for area, milestones in grouped_milestones.items %}
-      <h3>{{ area }}</h3>
-      {% for milestone in milestones %}
-        <div>
-            <input type="checkbox" id="milestone_{{ milestone.0 }}" name="logged_milestones" value="{{ milestone.0 }}" {% if milestone.0 in logged_milestones %} checked {% endif %}>
-            <label for="milestone_{{ milestone.0 }}">{{ milestone.1 }}</label>
-        </div>
-      {% endfor %}
+        <h2>{{ area }}</h2>
+        {% for milestone in milestones %}
+            <div class="milestone-item">
+                <input type="checkbox" id="milestone_{{ milestone.0 }}" name="logged_milestones" value="{{ milestone.0 }}" {% if milestone.0 in logged_milestones %} checked {% endif %}>
+                <label for="milestone_{{ milestone.0 }}">{{ milestone.1 }}</label>
+                <label for="milestone_date_{{ milestone.0 }}">Date Observed:</label>
+                <input type="date" id="milestone_date_{{ milestone.0 }}" name="milestone_date_{{ milestone.0 }}">
+            </div>
+        {% endfor %}
     {% endfor %}
     <button type="submit">Log Milestones</button>
 </form>
+
+<script>
+    window.onload = function() {
+        let checkboxes = document.querySelectorAll("input[type=checkbox][name=logged_milestones]");
+        checkboxes.forEach(function(checkbox) {
+            checkbox.addEventListener('change', function() {
+                let dateInput = document.querySelector(`#milestone_date_${this.value}`);
+                if (this.checked) {
+                    let today = new Date();
+                    let dd = String(today.getDate()).padStart(2, '0');
+                    let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+                    let yyyy = today.getFullYear();
+                    today = yyyy + '-' + mm + '-' + dd;
+                    dateInput.value = today;
+                } else {
+                    dateInput.value = ""; // reset date field if checkbox is unchecked
+                }
+            });
+        });
+    };
+</script>

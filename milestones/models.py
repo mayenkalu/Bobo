@@ -21,8 +21,6 @@ class LoggedMilestone(models.Model):
     def __str__(self):
         return f'{self.baby.name}: {self.milestone.description}'
 
-
-
 class Activity(models.Model):
     month = models.IntegerField()
     activity = models.TextField()
