@@ -1,3 +1,5 @@
+{% load dict_filters %}
+
 {% if messages %}
     <ul class="messages">
         {% for message in messages %}
@@ -21,7 +23,13 @@
                 <input type="checkbox" id="milestone_{{ milestone.0 }}" name="logged_milestones" value="{{ milestone.0 }}" {% if milestone.0 in logged_milestones %} checked {% endif %}>
                 <label for="milestone_{{ milestone.0 }}">{{ milestone.1 }}</label>
                 <label for="milestone_date_{{ milestone.0 }}">Date Observed:</label>
-                <input type="date" id="milestone_date_{{ milestone.0 }}" name="milestone_date_{{ milestone.0 }}">
+                {% if milestone.0 in logged_milestones %}
+                    {% with milestone_date=logged_milestones|get_item:milestone.0 %}
+                        <input type="date" id="milestone_date_{{ milestone.0 }}" name="milestone_date_{{ milestone.0 }}" value="{{ milestone_date|date:'Y-m-d' }}">
+                    {% endwith %}
+                {% else %}
+                    <input type="date" id="milestone_date_{{ milestone.0 }}" name="milestone_date_{{ milestone.0 }}">
+                {% endif %}
             </div>
         {% endfor %}
     {% endfor %}

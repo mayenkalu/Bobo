@@ -17,6 +17,7 @@ class Milestone(models.Model):
 class LoggedMilestone(models.Model):
     baby = models.ForeignKey(Baby, on_delete=models.CASCADE, related_name='logged_milestones_set')
     milestone = models.ForeignKey(Milestone, on_delete=models.CASCADE, related_name='logged_milestones')
+    date_observed = models.DateField(null=True, blank=True)
 
     def __str__(self):
         return f'{self.baby.name}: {self.milestone.description}'

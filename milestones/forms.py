@@ -27,15 +27,13 @@ class MilestoneLogForm(forms.ModelForm):
     def save(self, commit=True):
         baby = self.instance
         logged_milestones = self.cleaned_data['logged_milestones']
+        milestone_dates = {int(m_id.replace('milestone_date_', '')): date for m_id, date in self.data.items() if m_id.startswith("milestone_date_") and date}
         if commit:
             # Delete LoggedMilestones not in logged_milestones
             LoggedMilestone.objects.filter(baby=baby).exclude(milestone__in=logged_milestones).delete()
-        
-            for milestone in logged_milestones:
-                LoggedMilestone.objects.update_or_create(baby=baby, milestone=milestone)
 
-            # Update logged_milestones field in Baby model
-            baby.logged_milestones.set(logged_milestones)
+            for milestone in logged_milestones:
+                LoggedMilestone.objects.update_or_create(baby=baby, milestone=milestone, defaults={'date_observed': milestone_dates.get(milestone.id)})
             baby.save()
         return baby
 

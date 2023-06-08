@@ -5,10 +5,17 @@ from babies.models import Baby
 from itertools import groupby
 from django.contrib import messages
 
+from django.shortcuts import render, redirect
+from .forms import MilestoneLogForm
+from .models import Milestone, Activity, NutritionGuide
+from babies.models import Baby
+from itertools import groupby
+from django.contrib import messages
+
 def log_milestone(request, baby_id):
     baby = Baby.objects.get(id=baby_id)
     milestones = Milestone.objects.filter(month=baby.age_in_months)
-    logged_milestones = list(baby.logged_milestones.values_list('id', flat=True))
+    logged_milestones = {lm.milestone.id: lm.date_observed for lm in baby.logged_milestones_set.all()}
 
     grouped_milestones = {}
     for milestone in milestones:
@@ -21,12 +28,9 @@ def log_milestone(request, baby_id):
             messages.success(request, 'Milestones logged successfully.')
             return redirect('milestones:log_milestone', baby_id=baby.id)
     else:
-        form = MilestoneLogForm(instance=baby, baby=baby, grouped_milestones=grouped_milestones, initial={'logged_milestones': logged_milestones})
+        form = MilestoneLogForm(instance=baby, baby=baby, grouped_milestones=grouped_milestones)
 
     return render(request, 'milestones/log_milestone.html', {'form': form, 'grouped_milestones': grouped_milestones, 'logged_milestones': logged_milestones, 'baby': baby})
-
-
-
 
 
 
