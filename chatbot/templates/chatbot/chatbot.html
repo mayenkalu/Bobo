@@ -1,6 +1,55 @@
 <html>
 <head>
     <title>Chatbot</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            function getCookie(name) {
+                let cookieValue = null;
+                if (document.cookie && document.cookie !== '') {
+                    const cookies = document.cookie.split(';');
+                    for (let i = 0; i < cookies.length; i++) {
+                        const cookie = cookies[i].trim();
+                        // Does this cookie string begin with the name we want?
+                        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+            const csrftoken = getCookie('csrftoken');
+
+            $('#send-button').click(sendMessage);
+
+            $('#message-input').keypress(function(e) {
+                if (e.which === 13) {
+                    sendMessage();
+                }
+            });
+
+            function sendMessage() {
+                var message = $('#message-input').val().trim();
+
+                if (message !== '') {
+                    $('#chat-log').append('<p><strong>You:</strong> ' + message + '</p>');
+                    $('#message-input').val('');
+
+                    $.ajax({
+                        url: '/chatbot/',
+                        type: 'post',
+                        data: {message: message},
+                        headers: {'X-CSRFToken': csrftoken},
+                        success: function(response) {
+                            $('#chat-log').append('<p><strong>Chatbot:</strong> ' + response.response + '</p>');
+                            $('#chat-log').scrollTop($('#chat-log')[0].scrollHeight);
+                        }
+                    });
+                }
+            }
+        });
+    </script>
 </head>
 <body>
     <h1>Chatbot</h1>
@@ -11,39 +60,5 @@
             <button id="send-button">Send</button>
         </div>
     </div>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            // Handle send button click
-            $('#send-button').click(sendMessage);
-
-            // Handle enter key press in the message input field
-            $('#message-input').keypress(function(e) {
-                if (e.which === 13) {
-                    sendMessage();
-                }
-            });
-        });
-
-        function sendMessage() {
-            var message = $('#message-input').val().trim();
-
-            if (message !== '') {
-                // Display the user's message in the chat log
-                $('#chat-log').append('<p><strong>You:</strong> ' + message + '</p>');
-                // Clear the message input field
-                $('#message-input').val('');
-
-                // Send the user's message to the server
-                $.post('/chatbot/', { message: message }, function(response) {
-                    // Display the chatbot's response in the chat log
-                    $('#chat-log').append('<p><strong>Chatbot:</strong> ' + response.response + '</p>');
-                    // Scroll to the bottom of the chat log
-                    $('#chat-log').scrollTop($('#chat-log')[0].scrollHeight);
-                });
-            }
-        }
-    </script>
 </body>
 </html>
