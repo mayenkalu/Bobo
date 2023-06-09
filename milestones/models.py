@@ -24,7 +24,9 @@ class LoggedMilestone(models.Model):
 
 class Activity(models.Model):
     month = models.IntegerField()
+    title = models.CharField(max_length=100)
     activity = models.TextField()
+    imageUrls = models.JSONField(null=True)
 
 
 class NutritionGuide(models.Model):
