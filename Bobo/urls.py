@@ -24,7 +24,8 @@ from django.conf.urls.static import static
 from accounts.api import UserViewSet
 from babies.api import BabyViewSet
 from forum import api as forum_api
-from marketplace.api import CategoryViewSet, ItemViewSet 
+from marketplace.api import CategoryViewSet, ItemViewSet
+from milestones.api import MilestoneViewSet, LoggedMilestoneViewSet, ActivityViewSet, NutritionGuideViewSet, ProgressViewSet
 
 router = DefaultRouter()
 router.register(r'users', UserViewSet)
@@ -35,6 +36,12 @@ router.register(r'forum/posts', forum_api.PostViewSet)
 router.register(r'forum/comments', forum_api.CommentViewSet)
 router.register(r'categories', CategoryViewSet, basename='category')
 router.register(r'items', ItemViewSet, basename='item')
+router.register(r'milestones', MilestoneViewSet)
+router.register(r'logged_milestones', LoggedMilestoneViewSet)
+router.register(r'activities', ActivityViewSet)
+router.register(r'nutrition_guides', NutritionGuideViewSet)
+router.register(r'progresses', ProgressViewSet)
+
 
 
 urlpatterns = [
