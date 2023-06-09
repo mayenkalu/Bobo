@@ -1,11 +1,31 @@
 {% block content %}
-  <h2>Activities for {{ baby.name }} ({{ baby.age_in_months }} months)</h2>
+  <h2>Welcome to {{ baby.name }}'s Activity Center!</h2>
+  
+  <p>
+    At {{ baby.age_in_months }} months old, your baby is growing rapidly and exploring the world. Regularly engaging your child with various activities is essential for their cognitive and physical development.
+  </p>
+  
+  <p>
+    Activities don't just keep your little one busy - they also nurture curiosity, foster learning, and promote physical well-being. Try to find time each day for these activities. Remember, they are not just for your baby's development but also a wonderful way to strengthen your bond with your baby.
+  </p>
+  
+  <p>
+    Here are some activities suitable for {{ baby.name }} at {{ baby.age_in_months }} months old:
+  </p>
+
   <ul>
   {% for activity in activities %}
-    <li>{{ activity.activity }}</li>
+    <li>
+      <h3>{{ activity.title }}</h3>
+      <p>{{ activity.activity }}</p>
+      {% if activity.imageUrls %}
+        <img src="{{ activity.imageUrls }}" alt="{{ activity.title }}">
+      {% endif %}
+    </li>
   {% empty %}
-    <li>No activities available for this month.</li>
+    <li>No activities available for this month. Keep exploring and creating memorable moments with your baby!</li>
   {% endfor %}
   </ul>
+
   <a href="{% url 'babies:baby_detail' baby.id %}">Back to baby profile</a>
 {% endblock %}
