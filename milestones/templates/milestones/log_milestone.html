@@ -13,6 +13,9 @@
 <p>Hello, and thank you for using our milestone tracker. Today, {{ baby.name }} is {{ baby.age_in_months }} months old. Below, you'll find a list of developmental milestones that babies often reach around this age. This isn't a checklist, so don't worry if {{ baby.name }} hasn't reached all of them yet. All babies develop at their own pace!</p>
 
 <p>We recommend using this page to track {{ baby.name }}'s growth and development. It can be a fun way to document these special moments and observe how {{ baby.name }} is learning and growing. Plus, this information can be helpful for pediatrician visits. Please select each milestone that {{ baby.name }} has reached, and include the date it was observed.</p>
+{% for i in range(baby.age_in_months) %}
+    <a href="{% url 'milestones:log_previous_milestone' baby.id i %}">Month {{ i }}</a>
+{% endfor %}
 
 <form method="post">
     {% csrf_token %}
