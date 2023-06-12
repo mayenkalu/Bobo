@@ -33,6 +33,27 @@ def log_milestone(request, baby_id):
     return render(request, 'milestones/log_milestone.html', {'form': form, 'grouped_milestones': grouped_milestones, 'logged_milestones': logged_milestones, 'baby': baby})
 
 
+def log_previous_milestone(request, baby_id, month):
+    baby = Baby.objects.get(id=baby_id)
+    milestones = Milestone.objects.filter(month=month)
+    logged_milestones = {lm.milestone.id: lm.date_observed for lm in baby.logged_milestones_set.filter(milestone__month=month)}
+
+    grouped_milestones = {}
+    for milestone in milestones:
+        grouped_milestones.setdefault(milestone.area, []).append((milestone.id, milestone.description))
+
+    if request.method == 'POST':
+        form = MilestoneLogForm(request.POST, instance=baby, baby=baby, month=month, grouped_milestones=grouped_milestones)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Milestones logged successfully.')
+            return redirect('milestones:log_previous_milestone', baby_id=baby.id, month=month)
+    else:
+        form = MilestoneLogForm(instance=baby, baby=baby, month=month, grouped_milestones=grouped_milestones)
+
+    return render(request, 'milestones/log_milestone.html', {'form': form, 'grouped_milestones': grouped_milestones, 'logged_milestones': logged_milestones, 'baby': baby, 'month': month})
+
+
 
 
 
