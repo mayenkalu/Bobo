@@ -3,10 +3,27 @@
 {% block content %}
   <h2>Welcome to the Home Page</h2>
   <p>You are successfully logged in!</p>
+  
+  {% if babies %}
+    <h3>Here are the babies in your family:</h3>
+    {% for baby in babies %}
+      <div>
+        {% if baby.picture %}
+          <img src="{{ baby.picture.url }}" alt="{{ baby.name }}'s picture" style="width: 100px; height: auto;">
+        {% else %}
+          <p>No picture available.</p>
+        {% endif %}
+        <h4><a href="{% url 'babies:baby_detail' baby.id %}">{{ baby.name }}</a></h4>
+        <p>Age: {{ baby.age_in_months }} months</p>
+      </div>
+    {% endfor %}
+    <a href="{% url 'babies:baby_create' %}">Add another baby</a> <!-- This is the link to create a new baby profile -->
+  {% else %}
+    <p>You don't have any baby profiles. <a href="{% url 'babies:baby_create' %}">Create one now.</a></p>
+  {% endif %}
+
   <a href="{% url 'logout' %}">Logout</a> <!-- This is the logout button -->
   <a href="{% url 'delete_account' %}">Delete Account</a> <!-- This is the delete account button -->
-  <a href="{% url 'babies:baby_create' %}">Create Baby Profile</a> <!-- This is the link to create a new baby profile -->
-  <a href="{% url 'babies:babies_journey' %}">Babies Journey</a>
   <a href="{% url 'forum:category_list' %}">Forum</a> <!-- This is the link to the forum -->
   <a href="{% url 'marketplace:category_list' %}">MarketPlace</a>
 {% endblock %}
