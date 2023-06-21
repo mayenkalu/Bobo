@@ -1,0 +1,47 @@
+* {
+    box-sizing: border-box;  
+}
+
+.header{
+    border: 2px solid;
+    width: 94%;
+    margin: 20px auto;
+    height: 75px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.logo{
+    border: 1px solid;
+    height: 95%;
+    width: 137px;
+    
+}
+
+.header img{
+    height: 100%;
+    width: 75px;
+    border: 1px solid;
+    margin-right: -28px;
+}
+
+.header h1{
+    font-size: 36px;
+    display: inline-block;
+    border: 1px solid;
+    color: rgb(150,184,64);
+}
+
+
+.nav{
+    border: 1px solid; 
+    display: inline-block;
+    margin: 30px 10px 5px 10px;
+}
+
+.nav a{
+    font-size: 17px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin: 0 10px;
+}
