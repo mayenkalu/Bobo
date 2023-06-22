@@ -2,10 +2,14 @@
     box-sizing: border-box;  
 }
 
+body{
+    margin: 0;
+}
+
 .header{
     border: 2px solid;
     width: 94%;
-    margin: 10px auto;
+    margin:  auto;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -80,7 +84,8 @@
     color: white;
 }
 
-body{
+.first{
+    width: 100%;
     background: linear-gradient(
         180deg,
         rgba(105, 71, 191, 1) 5%,
@@ -94,7 +99,6 @@ body{
     );
 }
 
-
 .intro{
     border: 2px solid;
     width: 94%;
@@ -107,7 +111,20 @@ body{
 
 }
 
+.description h2{
+    font-size: 50px;
+    color: white;
+    line-height: 0.8;
+    text-shadow: 5px 5px rgb(0, 0, 0);
+    text-align: left;
+}
 
+.description p{
+    font-size: 25px;
+    text-align: left;
+    line-height: 1.5;
+    color: rgb(45, 67, 4);
+}
 
 .ken{
     max-width: 1000px;
