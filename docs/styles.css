@@ -6,7 +6,6 @@
     border: 2px solid;
     width: 94%;
     margin: 10px auto;
-    height: 75px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -18,7 +17,7 @@
 
 .logo{
     border: 1px solid;
-    height: 95%;
+    height: 75px;
     width: 137px;
     
 }
@@ -55,7 +54,7 @@
 .nav a{
     font-size: 17px;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-
+    color: white;
 }
 
 .header .button{
@@ -69,10 +68,48 @@
 }
 
 .button button{
-    padding: 3px 10px 0px 10px;
+    padding: 2px 10px 0px 10px;
+    border-radius: 5px;
+    background: rgb(150,184,64, 74%);
+    color: white;
 }
 
 .button a{
     font-size: 16px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: white;
+}
+
+body{
+    background: linear-gradient(
+        180deg,
+        rgba(105, 71, 191, 1) 5%,
+        rgba(142, 147, 167, 1) 18%,
+        rgba(196, 146, 72, 1) 30%,
+        rgba(75, 138, 221, 1) 33%,
+        rgba(207, 49, 50, 1) 47%,
+        rgba(143, 148, 168, 1) 57%,
+        rgba(172, 113, 92, 1) 82%,
+        rgba(1, 146, 225, 1) 93%
+    );
+}
+
+
+.intro{
+    border: 2px solid;
+    width: 94%;
+    margin: 10px auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+
+.ken{
+    max-width: 1000px;
+    min-width: 200px;
 }
