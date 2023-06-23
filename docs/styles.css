@@ -57,9 +57,19 @@ body{
 }
 
 .nav a{
+    text-decoration: none;
     font-size: 17px;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    color: white;
+    color: rgb(255, 255, 255);
+}
+
+.nav a:visited {color: rgb(255, 255, 255); /*this is how to style a link that has been visited*/
+}
+
+.nav a:hover { color: rgb(14, 230, 230) /*this is how to style a link when the mouse hovers over it*/
+}
+
+.nav a:active { color: rgb(255, 113, 113) /*this is how to style a link when it is clicked*/
 }
 
 .header .button{
@@ -221,6 +231,7 @@ body{
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-evenly;
+    padding-top: 20px;
 }
     
 
@@ -229,14 +240,17 @@ body{
     width: 30%;
     min-width: 280px;
     font-size: 20px;
-    
-    line-height: 1.5;
+    border-left: 1px double;
+    padding-left: 10px;
+    line-height: 1.6;
 }
 
 .fourth .chesa{
     width: 30%;
     min-width: 280px;
     font-size: 20px;
+    padding-left: 10px;
+    border-left: 1px double;
     text-align: left;
 }
 
@@ -244,5 +258,21 @@ body{
     width: 30%;
     min-width: 280px;
     font-size: 20px;
+    border-left: 1px double;
+    padding-left: 10px;
     text-align: left;
 }
+
+.lin{
+    color: rgb(94, 255, 0);
+}
+
+.nav a:visited {color: rgb(255, 255, 255); /*this is how to style a link that has been visited*/
+}
+
+.lin:hover { color: rgb(255, 0, 212) /*this is how to style a link when the mouse hovers over it*/
+}
+
+.nav a:active { color: rgb(255, 113, 113) /*this is how to style a link when it is clicked*/
+}
+
