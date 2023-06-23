@@ -65,7 +65,7 @@ body{
 
 
 
-.niv:hover {color: rgb(0, 242, 255); /*this is how to style a link when the mouse hovers over it*/
+.niv:hover {color: rgb(0, 0, 0); /*this is how to style a link when the mouse hovers over it*/
 }
 
 .niv:active {color: rgb(255, 113, 113); /*this is how to style a link when it is clicked*/
@@ -132,9 +132,10 @@ body{
 
 .description p{
     font-size: 25px;
+    font-weight: bolder;
     text-align: left;
     line-height: 1.5;
-    color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
