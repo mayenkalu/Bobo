@@ -9,12 +9,13 @@ body{
 .header{
     border: 2px solid;
     width: 94%;
-    margin:  auto;
+
+    margin:  0 auto;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    align-items: baseline;
     justify-content: center;
+    align-items: baseline;
 
 
 }
@@ -151,7 +152,8 @@ body{
     font-size: 40px;
     font-style: italic;
     text-align: center;
-    color:rgb(105, 71, 191)
+    color:rgb(105, 71, 191);
+    margin: 0;
 }
 
 .Milestone, .Forum, .Marketplace, .Activity{
@@ -165,8 +167,48 @@ body{
 .one-third h3 {
     text-align: center;
     color: rgb(105, 71, 191);
+    margin: 0;
+    border: 3px double;
 }
 
 .one-third p {
     text-align: center;
 }
+
+.third{
+    border: 2px solid;
+    width: 100%;
+    margin: 10px auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(closest-side, rgb(17,121,231),rgb(95,152,182),rgb(124,154,176),rgb(163, 175, 189));
+
+}
+
+.about {
+    border: 2px solid;
+    width: 800px;
+}
+
+
+.about  h2{
+    text-align: center;
+    font-size: 40px;
+}
+
+.about p{
+    text-align: center;
+    font-size: 25px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+
+.bobo{
+    max-width: 900px;
+    min-width: 200px;
+    border: 2px solid;
+}
+
+
