@@ -113,10 +113,11 @@ body{
 
 .description h2{
     font-size: 50px;
-    color: white;
+    color: rgb(255, 255, 255);
     line-height: 0.8;
     text-shadow: 5px 5px rgb(0, 0, 0);
     text-align: left;
+    
 }
 
 .description p{
@@ -124,9 +125,39 @@ body{
     text-align: left;
     line-height: 1.5;
     color: rgb(45, 67, 4);
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 .ken{
     max-width: 1000px;
     min-width: 200px;
+}
+
+#features{
+    border: 1px solid;
+    max-width: 1400px;
+    min-width: 280px;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+
+
+}
+
+.offer{
+    font-size: 40px;
+    font-style: italic;
+    text-align: center;
+}
+
+.Milestone, .Forum, .Marketplace, .Activity{
+    width: 100%;
+    max-width: 360px;
+    height: 350px;
+    border-radius: 100px;
+    object-fit: cover;
 }
