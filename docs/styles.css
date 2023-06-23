@@ -203,12 +203,10 @@ body{
     text-align: center;
     font-size: 25px;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-
+}
 
 .bobo{
     max-width: 900px;
     min-width: 200px;
     border: 2px solid;
 }
-
-
