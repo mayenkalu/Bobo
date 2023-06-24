@@ -64,7 +64,7 @@ body{
 
 
 
-.niv:hover {color: rgb(0, 0, 0); /*this is how to style a link when the mouse hovers over it*/
+.niv:hover {color:  rgb(150,184,64); /*this is how to style a link when the mouse hovers over it*/
 }
 
 .niv:active {color: rgb(255, 113, 113); /*this is how to style a link when it is clicked*/
