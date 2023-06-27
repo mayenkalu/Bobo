@@ -134,6 +134,7 @@ body{
     text-align: left;
     line-height: 1.5;
     color: rgb(7, 56, 72);
+    margin: 0 8px;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
@@ -210,6 +211,7 @@ body{
     text-align: left;
     font-size: 22px;
     color: rgb(7, 56, 72);
+    margin: 0 8px;
 }
 
 .bobo{
